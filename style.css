@@ -1,0 +1,556 @@
+/* ========================================
+   CSS Variables & Base
+======================================== */
+:root {
+    --bg-warm: #fef9f3;
+    --bg-blush: #fff0f0;
+    --bg-lavender: #f3eeff;
+    --bg-mint: #f0faf5;
+    --bg-peach: #fff5ee;
+    --bg-sky: #f0f4ff;
+    --bg-cream: #fffcf5;
+
+    --text-primary: #5a4a42;
+    --text-secondary: #8a7a72;
+    --text-light: #b0a098;
+
+    --accent-blush: #f4a6b0;
+    --accent-lavender: #c4a8e0;
+    --accent-peach: #f5c7a0;
+    --accent-mint: #a8dcc0;
+    --accent-sky: #a8c8f0;
+    --accent-rose: #e8a0b0;
+
+    --card-shadow: 0 4px 20px rgba(180, 160, 150, 0.12);
+    --card-shadow-hover: 0 8px 32px rgba(180, 160, 150, 0.2);
+
+    --radius-soft: 20px;
+    --radius-round: 50%;
+
+    --font-body: 'Quicksand', sans-serif;
+    --font-cursive: 'Sacramento', cursive;
+
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ========================================
+   Reset & Base
+======================================== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--bg-warm);
+    overflow-x: hidden;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ========================================
+   Floating Background Elements
+======================================== */
+.floating-elements {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.float-item {
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0.15;
+    animation: floatAround 20s ease-in-out infinite;
+}
+
+@keyframes floatAround {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    25% {
+        transform: translateY(-30px) rotate(5deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(-3deg);
+    }
+    75% {
+        transform: translateY(-40px) rotate(7deg);
+    }
+}
+
+/* ========================================
+   Section Base
+======================================== */
+.section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    max-width: 680px;
+    width: 100%;
+    text-align: center;
+}
+
+/* ========================================
+   Fade In Animation
+======================================== */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   Section 1: Welcome
+======================================== */
+.welcome-section {
+    background: linear-gradient(180deg, #fff5ee 0%, #fef0f5 50%, #f8f0ff 100%);
+}
+
+.flower-icon {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    animation: gentleBounce 3s ease-in-out infinite;
+}
+
+@keyframes gentleBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.cursive-title {
+    font-family: var(--font-cursive);
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: var(--accent-rose);
+    font-weight: 400;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+.scroll-hint {
+    margin-top: 48px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: lowercase;
+}
+
+.scroll-arrow {
+    margin-top: 8px;
+    animation: scrollBounce 2s ease-in-out infinite;
+    font-size: 1.2rem;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: translateY(0); opacity: 0.5; }
+    50% { transform: translateY(8px); opacity: 1; }
+}
+
+/* ========================================
+   Section 2: Hug
+======================================== */
+.hug-section {
+    background: linear-gradient(180deg, #f8f0ff 0%, #fff0f5 100%);
+}
+
+.hug-emoji {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: hugPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes hugPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+h2 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.gentle-text {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.9;
+    font-weight: 400;
+}
+
+.sparkle-divider {
+    margin-top: 32px;
+    color: var(--accent-lavender);
+    letter-spacing: 12px;
+    font-size: 0.9rem;
+}
+
+/* ========================================
+   Section 3: Cards
+======================================== */
+.amazing-section {
+    background: linear-gradient(180deg, #fff0f5 0%, #f0faf5 100%);
+}
+
+.card-stack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 8px;
+}
+
+.sweet-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: var(--radius-soft);
+    padding: 28px 20px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition-smooth);
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.sweet-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: var(--delay);
+}
+
+.sweet-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.card-emoji {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.sweet-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ========================================
+   Section 4: Comfort Kit
+======================================== */
+.comfort-section {
+    background: linear-gradient(180deg, #f0faf5 0%, #fff5ee 100%);
+}
+
+.comfort-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.comfort-item {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 16px;
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+    transition: var(--transition-smooth);
+    cursor: default;
+    opacity: 0;
+    transform: scale(0.9);
+}
+
+.comfort-item.visible {
+    opacity: 1;
+    transform: scale(1);
+    transition-delay: var(--delay);
+}
+
+.comfort-item:hover {
+    transform: scale(1.05);
+    box-shadow: var(--card-shadow-hover);
+}
+
+.comfort-emoji {
+    font-size: 2.2rem;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.comfort-label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+/* ========================================
+   Section 5: Reasons to Smile
+======================================== */
+.smile-section {
+    background: linear-gradient(180deg, #fff5ee 0%, #f0f4ff 100%);
+}
+
+.reasons-container {
+    margin-top: 32px;
+    text-align: left;
+}
+
+.reason {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(200, 185, 175, 0.15);
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reason.visible {
+    opacity: 1;
+    transform: translateX(0);
+    transition-delay: var(--delay);
+}
+
+.reason:last-child {
+    border-bottom: none;
+}
+
+.reason-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-blush);
+    letter-spacing: 0.05em;
+    min-width: 24px;
+    padding-top: 3px;
+}
+
+.reason p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ========================================
+   Section 6: Compliment Button
+======================================== */
+.compliment-section {
+    background: linear-gradient(180deg, #f0f4ff 0%, #fef0f5 100%);
+}
+
+.compliment-btn {
+    margin-top: 28px;
+    padding: 16px 40px;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(135deg, var(--accent-blush), var(--accent-lavender));
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(244, 166, 176, 0.3);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.compliment-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.compliment-btn:hover::before {
+    left: 100%;
+}
+
+.compliment-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(244, 166, 176, 0.4);
+}
+
+.compliment-btn:active {
+    transform: scale(0.97);
+}
+
+.compliment-display {
+    margin-top: 28px;
+    min-height: 60px;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.compliment-display.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   Section 7: Closing
+======================================== */
+.closing-section {
+    background: linear-gradient(180deg, #fef0f5 0%, #fff8f0 50%, #fef9f3 100%);
+}
+
+.closing-flower {
+    font-size: 3rem;
+    margin-bottom: 16px;
+    animation: gentleBounce 3s ease-in-out infinite;
+}
+
+.closing-title {
+    margin-bottom: 24px;
+}
+
+.closing-message {
+    margin-bottom: 32px;
+}
+
+.signature {
+    margin-top: 40px;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+}
+
+/* ========================================
+   Hearts Rain
+======================================== */
+.hearts-rain {
+    position: relative;
+    height: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1rem;
+    opacity: 0;
+    animation: heartFall 4s ease-in forwards;
+}
+
+@keyframes heartFall {
+    0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0);
+    }
+    10% {
+        opacity: 0.7;
+        transform: translateY(-20px) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(80px) scale(0.5) rotate(20deg);
+    }
+}
+
+/* ========================================
+   Mini Heart Burst (on compliment click)
+======================================== */
+.mini-heart {
+    position: fixed;
+    font-size: 1rem;
+    pointer-events: none;
+    z-index: 1000;
+    animation: miniHeartFloat 1.5s ease-out forwards;
+}
+
+@keyframes miniHeartFloat {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(0.3);
+    }
+}
+
+/* ========================================
+   Responsive
+======================================== */
+@media (max-width: 600px) {
+    .section {
+        padding: 48px 20px;
+    }
+
+    .card-stack {
+        grid-template-columns: 1fr;
+    }
+
+    .comfort-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cursive-title {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .reason {
+        padding: 16px 0;
+    }
+}
+
+@media (max-width: 380px) {
+    .comfort-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+}
